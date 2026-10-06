@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="3D-поделки и изделия на заказ. Цена договорная.">
+  <title>3D Craft — Поделки на 3D-принтере</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6c2cff, #00c6ff);
+      padding: 20px 7%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 5px 25px rgba(0,0,0,.25);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      opacity: .8;
+    }
+
+    .hero {
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(108,44,255,.4), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(0,198,255,.3), transparent 35%);
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 80px);
+      line-height: 1;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: #00c6ff;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      font-size: 20px;
+      margin-bottom: 35px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 28px;
+      border-radius: 14px;
+      background: #00c6ff;
+      color: #06101c;
+      text-decoration: none;
+      font-weight: 900;
+      transition: .2s;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,198,255,.3);
+    }
+
+    .btn-purple {
+      background: #6c2cff;
+      color: white;
+    }
+
+    section {
+      padding: 80px 7%;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 45px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .category {
+      padding: 10px 18px;
+      border: 1px solid #263451;
+      background: #121a2d;
+      color: #cbd5e1;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .category:hover,
+    .category.active {
+      background: #6c2cff;
+      color: white;
+      border-color: #6c2cff;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: #121a2d;
+      border: 1px solid #22304b;
+      border-radius: 22px;
+      overflow: hidden;
+      transition: .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: #6c2cff;
+      box-shadow: 0 15px 40px rgba(0,0,0,.3);
+    }
+
+    .product-image {
+      height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      background: linear-gradient(135deg, #1c2742, #151b31);
+    }
+
+    .card-content {
+      padding: 22px;
+    }
+
+    .card h3 {
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 17px;
+    }
+
+    .price {
+      color: #00c6ff;
+      font-weight: 900;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .card .btn {
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+    }
+
+    .about {
+      background: #11182a;
+      border-radius: 30px;
+      padding: 60px;
+      text-align: center;
+      max-width: 1100px;
+      margin: 30px auto;
+    }
+
+    .about p {
+      max-width: 750px;
+      margin: 20px auto 0;
+      color: #aab7ca;
+      font-size: 17px;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .telegram {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 25px;
+      padding: 17px 30px;
+      background: #229ed9;
+      color: white;
+      text-decoration: none;
+      border-radius: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .telegram:hover {
+      transform: scale(1.04);
+      box-shadow: 0 10px 30px rgba(34,158,217,.3);
+    }
+
+    footer {
+      border-top: 1px solid #202c44;
+      text-align: center;
+      padding: 30px 20px;
+      color: #718096;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        padding: 16px 20px;
+      }
+
+      nav a {
+        display: none;
+      }
+
+      .hero {
+        min-height: 500px;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+
+      .about {
+        padding: 35px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">🖨️ 3D Craft</div>
+
+      <div>
+        <a href="#catalog">Каталог</a>
+        <a href="#about">О нас</a>
+        <a href="#contact">Контакты</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Крутые <span>3D-поделки</span><br>на заказ</h1>
+
+        <p>
+          Печатаем интересные фигурки, игрушки,
+          подарки и разные полезные вещи на 3D-принтере.
+        </p>
+
+        <a href="#catalog" class="btn">Посмотреть каталог</a>
+      </div>
+    </section>
+
+    <section id="catalog">
+      <h2 class="section-title">Наши работы</h2>
+      <p class="section-subtitle">
+        Выбирай готовую модель или предложи свою идею
+      </p>
+
+      <div class="categories">
+        <button class="category active" data-filter="all">Все</button>
+        <button class="category" data-filter="figures">Фигурки</button>
+        <button class="category" data-filter="toys">Игрушки</button>
+        <button class="category" data-filter="home">Для дома</button>
+        <button class="category" data-filter="gifts">Подарки</button>
+      </div>
+
+      <div class="products">
+
+        <article class="card" data-category="figures">
+          <div class="product-image">🐉</div>
+          <div class="card-content">
+            <h3>Дракон</h3>
+            <p>Красивая декоративная фигурка.</p>
+            <div class="price">Цена договорная</div>
+            <a class="btn" href="https://t.me/Leventer453" target="_blank">
+              Заказать
+            </a>
+          </div>
+        </article>
+
+        <article class="card" data-category="toys">
+          <div class="product-image">🤖</div>
+          <div class="card-content">
+            <h3>3D-робот</h3>
+            <p>Оригинальная игрушка из 3D-принтера.</p>
+            <div class="price">Цена договорная</div>
+            <a class="btn" href="https://t.me/Leventer453" target="_blank">
+              Заказать
+            </a>
+          </div>
+        </article>
+
+        <article class="card" data-category="home">
+          <div class="product-image">🪴</div>
+          <div class="card-content">
+            <h3>Кашпо</h3>
+            <p>Стильное кашпо для растений.</p>
+            <div class="price">Цена договорная</div>
+            <a class="btn" href="https://t.me/Leventer453" target="_blank">
+              Заказать
+            </a>
+          </div>
+        </article>
+
+        <article class="card" data-category="gifts">
+          <div class="product-image">🎁</div>
+          <div class="card-content">
+            <h3>Подарочная фигурка</h3>
+            <p>Идея для необычного подарка.</p>
+            <div class="price">Цена договорная</div>
+            <a class="btn" href="https://t.me/Leventer453" target="_blank">
+              Заказать
+            </a>
+          </div>
+        </article>
+
+        <article class="card" data-category="figures">
+          <div class="product-image">🦖</div>
+          <div class="card-content">
+            <h3>Динозавр</h3>
+            <p>Фигурка динозавра для коллекции.</p>
+            <div class="price">Цена договорная</div>
+            <a class="btn" href="https://t.me/Leventer453" target="_blank">
+              Заказать
+            </a>
+          </div>
+        </article>
+
+        <article class="card" data-category="toys">
+          <div class="product-image">🐙</div>
+          <div class="card-content">
+            <h3>Гибкий осьминог</h3>
+            <p>Забавная подвижная 3D-игрушка.</p>
+            <div class="price">Цена договорная</div>
+            <a class="btn" href="https://t.me/Leventer453" target="_blank">
+              Заказать
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="about">
+        <h2 class="section-title">Что мы делаем?</h2>
+
+        <p>
+          Создаём различные изделия на 3D-принтере.
+          Можно выбрать готовую поделку из каталога
+          или написать нам свою идею — попробуем воплотить её
+          в пластике!
+        </p>
+
+        <br>
+
+        <p>
+          🎨 Разные цвета &nbsp; • &nbsp;
+          🖨️ 3D-печать &nbsp; • &nbsp;
+          🎁 Изделия на заказ
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2 class="section-title">Есть идея?</h2>
+
+      <p class="section-subtitle">
+        Напиши нам в Telegram, чтобы обсудить заказ.
+      </p>
+
+      <a
+        class="telegram"
+        href="https://t.me/Leventer453"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ✈️ Написать в Telegram — @Leventer453
+      </a>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 3D Craft · 3D-поделки на заказ
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll(".category");
+    const cards = document.querySelectorAll(".card");
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+
+        buttons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const filter = button.dataset.filter;
+
+        cards.forEach(card => {
+          if (filter === "all" || card.dataset.category === filter) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
